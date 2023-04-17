@@ -3,6 +3,11 @@ const router = express.Router()
 const SellingLand = require('../models/SellingLand')
 
 router.get('/', async(req, res) => {
+
+    res.set({
+        'Access-Control-Allow-Headers': '*',
+        'Access-Control-Allow-Methods': 'POST,GET,DELETE,PUT,OPTIONS'
+    });
     try {
         const details = await SellingLand.find()
         res.status(200).json(details)
@@ -14,6 +19,12 @@ router.get('/', async(req, res) => {
 })
 
 router.post('/', async(req, res) => {
+
+    res.set({
+        'Access-Control-Allow-Headers': '*',
+        'Access-Control-Allow-Methods': 'POST,GET,DELETE,PUT,OPTIONS'
+    });
+
     if(!req.body.owner || !req.body.propertyID){
         res.status(400).send({
             "message": "Please enter the required fields"
