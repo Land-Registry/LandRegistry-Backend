@@ -16,6 +16,9 @@ const landDetailsSchema = new mongoose.Schema({
             type: String,
         }
     },
+    city:{
+        type: String,
+    },
     areaOfLand: {
         type: Number,
     },

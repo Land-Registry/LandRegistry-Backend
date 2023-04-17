@@ -13,6 +13,9 @@ app.use(cors());
 const landDetailsRouter = require('./routes/landDetails')
 app.use('/landDetails', landDetailsRouter)
 
+const SellingLandRouter = require('./routes/SellingLand')
+app.use('/SellingLand', SellingLandRouter)
+
 // PORT
 const port = process.env.PORT || 8000;
 

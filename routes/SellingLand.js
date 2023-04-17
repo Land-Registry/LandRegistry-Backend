@@ -1,10 +1,10 @@
 const express = require('express')
 const router = express.Router() 
-const LandDetails = require('../models/landDetails')
+const SellingLand = require('../models/SellingLand')
 
 router.get('/', async(req, res) => {
     try {
-        const details = await LandDetails.find()
+        const details = await SellingLand.find()
         res.status(200).json(details)
     } catch (error) {
         res.status(400).send({
@@ -22,18 +22,10 @@ router.post('/', async(req, res) => {
     try {
         var land_details = {
             owner: req.body.owner,
-            areaOfLand: req.body.areaOfLand,
-            pricePerSqFeet: req.body.pricePerSqFeet,
-            propertyID: req.body.propertyID,
-            physicalSurveyNo: req.body.physicalSurveyNo,
-            city: req.body.location.city,
+            propertyID: req.body.propertyID
+            // 
         }
-        if(req.body.location != null){
-            land_details.area = req.body.location.area
-            land_details.city = req.body.location.city
-            land_details.state = req.body.location.state
-        }
-        const details = new LandDetails(land_details)
+        const details = new SellingLand(land_details)
         await details.save()
         res.status(200).send({
             "message": "Land Details saved successfully"
