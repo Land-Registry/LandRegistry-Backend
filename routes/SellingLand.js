@@ -33,8 +33,22 @@ router.post('/', async(req, res) => {
     try {
         var land_details = {
             owner: req.body.owner,
-            propertyID: req.body.propertyID
-            // 
+            request: req.body.request,
+            propertyID: req.body.propertyID,
+            physicalSurveyNo: req.body.physicalSurveyNo,
+            tokenID: req.body.tokenID,
+            Area: req.body.Area,
+            ownerAddress: req.body.ownerAddress,
+            Buyer_name: req.body.Buyer_name,
+            InspectorName: req.body.InspectorName,
+            Buyer_address: req.body.Buyer_address,
+            Document_Access: req.body.Document_Access,
+            tokensend: req.body.tokensend,
+            Document_Verify: req.body.Document_Verify,
+            Transaction: req.body.Transaction,
+            Ownership_Transfer: req.body.Ownership_Transfer,
+            Price: req.body.Price,
+            ImageURL: req.body.ImageURL,
         }
         const details = new SellingLand(land_details)
         await details.save()
