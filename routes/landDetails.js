@@ -45,7 +45,7 @@ router.post('/', async(req, res) => {
     }
 })
 
-router.post('/update/:id', async(req, res) => {
+router.post('/:id', async(req, res) => {
     try {
       const id = req.params.id;
       const landDetails = await LandDetails.findById(id);
