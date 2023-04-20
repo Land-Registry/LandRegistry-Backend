@@ -45,4 +45,42 @@ router.post('/', async(req, res) => {
     }
 })
 
+router.post('/update/:id', async(req, res) => {
+    try {
+      const id = req.params.id;
+      const landDetails = await LandDetails.findById(id);
+      if (!landDetails) {
+        return res.status(404).send({ message: 'Land details not found' });
+      }
+      if (req.body.owner) {
+        landDetails.owner = req.body.owner;
+      }
+      if (req.body.areaOfLand) {
+        landDetails.areaOfLand = req.body.areaOfLand;
+      }
+      if (req.body.pricePerSqFeet) {
+        landDetails.pricePerSqFeet = req.body.pricePerSqFeet;
+      }
+      if (req.body.physicalSurveyNo) {
+        landDetails.physicalSurveyNo = req.body.physicalSurveyNo;
+      }
+      if (req.body.location) {
+        if (req.body.location.area) {
+          landDetails.area = req.body.location.area;
+        }
+        if (req.body.location.city) {
+          landDetails.city = req.body.location.city;
+        }
+        if (req.body.location.state) {
+          landDetails.state = req.body.location.state;
+        }
+      }
+      await landDetails.save();
+      res.status(200).send({ message: 'Land details updated successfully' });
+    } catch (error) {
+      res.status(400).send({ message: 'Error ' + error.message });
+    }
+  });
+  
+
 module.exports = router
