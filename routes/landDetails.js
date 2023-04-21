@@ -26,12 +26,12 @@ router.post('/', async(req, res) => {
             pricePerSqFeet: req.body.pricePerSqFeet,
             propertyID: req.body.propertyID,
             physicalSurveyNo: req.body.physicalSurveyNo,
-            city: req.body.location.city,
         }
         if(req.body.location != null){
-            land_details.area = req.body.location.area
-            land_details.city = req.body.location.city
-            land_details.state = req.body.location.state
+            land_details.location = {}
+            land_details.location.area = req.body.location.area
+            land_details.location.city = req.body.location.city
+            land_details.location.state = req.body.location.state
         }
         const details = new LandDetails(land_details)
         await details.save()
@@ -48,7 +48,7 @@ router.post('/', async(req, res) => {
 router.post('/:id', async(req, res) => {
     try {
       const id = req.params.id;
-      const landDetails = await LandDetails.findById(id);
+      const landDetails = await LandDetails.findOne({propertyID:id})
       if (!landDetails) {
         return res.status(404).send({ message: 'Land details not found' });
       }
@@ -66,13 +66,13 @@ router.post('/:id', async(req, res) => {
       }
       if (req.body.location) {
         if (req.body.location.area) {
-          landDetails.area = req.body.location.area;
+          landDetails.location.area = req.body.location.area;
         }
         if (req.body.location.city) {
-          landDetails.city = req.body.location.city;
+          landDetails.location.city = req.body.location.city;
         }
         if (req.body.location.state) {
-          landDetails.state = req.body.location.state;
+          landDetails.location.state = req.body.location.state;
         }
       }
       await landDetails.save();

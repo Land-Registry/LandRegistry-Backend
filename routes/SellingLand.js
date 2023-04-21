@@ -65,7 +65,7 @@ router.post("/", async (req, res) => {
 router.post("/:id", async (req, res) => {
   try {
     const id = req.params.id;
-    const sellingLand = await SellingLand.findById(id);
+    const sellingLand = await SellingLand.findOne({propertyID:id});
     if (!sellingLand) {
       return res.status(404).send({ message: "Land details not found" });
     }
@@ -75,9 +75,6 @@ router.post("/:id", async (req, res) => {
     }
     if (req.body.request) {
       sellingLand.request = req.body.request;
-    }
-    if (req.body.propertyID) {
-      sellingLand.propertyID = req.body.propertyID;
     }
     if (req.body.physicalSurveyNo) {
       sellingLand.physicalSurveyNo = req.body.physicalSurveyNo;
