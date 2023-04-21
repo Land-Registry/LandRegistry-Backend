@@ -4,6 +4,8 @@ const SellingLandSchema = new mongoose.Schema({
     owner: {
         type: String,
         required: true,
+default:'Owner',
+
     },
     request:{
         type: Boolean,
@@ -18,18 +20,23 @@ const SellingLandSchema = new mongoose.Schema({
         type: Number,
     },
     tokenID:{
-        type: String,
+        type: Number,
     },
     Area:{
         type: Number,
+    },
+    City:{
+        type: String,
     },
     ownerAddress:{
         type: String,
     },
     Buyer_name:{
         type: String,
+        default:'Buyer',
     },InspectorName:{
         type: String,
+        default:'Inspector',
     },
     Buyer_address:{
         type: String,
@@ -57,6 +64,9 @@ const SellingLandSchema = new mongoose.Schema({
         type: Number,
     },
     ImageURL:{
+        type: String,
+    },
+    DocumentURL:{
         type: String,
     }
 
