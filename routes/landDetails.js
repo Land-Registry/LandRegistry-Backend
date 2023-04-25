@@ -26,6 +26,7 @@ router.post('/', async(req, res) => {
             pricePerSqFeet: req.body.pricePerSqFeet,
             propertyID: req.body.propertyID,
             physicalSurveyNo: req.body.physicalSurveyNo,
+            status: req.body.status,
         }
         if(req.body.location != null){
             land_details.location = {}
@@ -63,6 +64,9 @@ router.post('/:id', async(req, res) => {
       }
       if (req.body.physicalSurveyNo) {
         landDetails.physicalSurveyNo = req.body.physicalSurveyNo;
+      }
+      if (req.body.status) {
+        landDetails.status = req.body.status;
       }
       if (req.body.location) {
         if (req.body.location.area) {

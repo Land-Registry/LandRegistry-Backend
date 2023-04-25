@@ -30,6 +30,10 @@ const landDetailsSchema = new mongoose.Schema({
     physicalSurveyNo: {
         type: Number,
     },
+    status:{
+        type: Boolean,
+        default: false,
+    }
 })
 
 module.exports = mongoose.model('LandDetails', landDetailsSchema);

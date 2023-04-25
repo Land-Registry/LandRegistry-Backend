@@ -42,10 +42,11 @@ router.post("/", async (req, res) => {
       InspectorName: req.body.InspectorName,
       Buyer_address: req.body.Buyer_address,
       Document_Access: req.body.Document_Access,
-      tokensend: req.body.tokensend,
-      Document_Verify: req.body.Document_Verify,
-      Transaction: req.body.Transaction,
-      Ownership_Transfer: req.body.Ownership_Transfer,
+    //   tokensend: req.body.tokensend,
+      ProcessStatus: req.body.ProcessStatus,
+    //   Document_Verify: req.body.Document_Verify,
+    //   Transaction: req.body.Transaction,
+    //   Ownership_Transfer: req.body.Ownership_Transfer,
       Price: req.body.Price,
       ImageURL: req.body.ImageURL,
       DocumentURL: req.body.DocumentURL,
@@ -69,6 +70,9 @@ router.post("/:id", async (req, res) => {
     if (!sellingLand) {
       return res.status(404).send({ message: "Land details not found" });
     }
+    console.log(
+        sellingLand, req.body.owner
+    )
 
     if (req.body.owner) {
       sellingLand.owner = req.body.owner;
@@ -79,11 +83,15 @@ router.post("/:id", async (req, res) => {
     if (req.body.physicalSurveyNo) {
       sellingLand.physicalSurveyNo = req.body.physicalSurveyNo;
     }
+
     if (req.body.tokenID) {
       sellingLand.tokenID = req.body.tokenID;
     }
     if (req.body.Area) {
       sellingLand.Area = req.body.Area;
+    }
+    if (req.body.propertyID){
+        sellingLand.propertyID = req.body.propertyID;
     }
     if (req.body.City) {
       sellingLand.City = req.body.City;
@@ -103,18 +111,21 @@ router.post("/:id", async (req, res) => {
     if (req.body.Document_Access) {
       sellingLand.Document_Access = req.body.Document_Access;
     }
-    if (req.body.tokensend) {
-      sellingLand.tokensend = req.body.tokensend;
-    }
-    if (req.body.Document_Verify) {
-      sellingLand.Document_Verify = req.body.Document_Verify;
-    }
-    if (req.body.Transaction) {
-      sellingLand.Transaction = req.body.Transaction;
-    }
-    if (req.body.Ownership_Transfer) {
-      sellingLand.Ownership_Transfer = req.body.Ownership_Transfer;
-    }
+    if (req.body.ProcessStatus) {
+        sellingLand.ProcessStatus = req.body.ProcessStatus;
+        }
+    // if (req.body.tokensend) {
+    //   sellingLand.tokensend = req.body.tokensend;
+    // }
+    // if (req.body.Document_Verify) {
+    //   sellingLand.Document_Verify = req.body.Document_Verify;
+    // }
+    // if (req.body.Transaction) {
+    //   sellingLand.Transaction = req.body.Transaction;
+    // }
+    // if (req.body.Ownership_Transfer) {
+    //   sellingLand.Ownership_Transfer = req.body.Ownership_Transfer;
+    // }
     if (req.body.Price) {
       sellingLand.Price = req.body.Price;
     }
