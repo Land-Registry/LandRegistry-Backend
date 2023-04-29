@@ -27,12 +27,14 @@ router.post('/', async(req, res) => {
             propertyID: req.body.propertyID,
             physicalSurveyNo: req.body.physicalSurveyNo,
             status: req.body.status,
+            OwnerAdhar: req.body.OwnerAdhar
         }
         if(req.body.location != null){
             land_details.location = {}
             land_details.location.area = req.body.location.area
             land_details.location.city = req.body.location.city
             land_details.location.state = req.body.location.state
+        
         }
         const details = new LandDetails(land_details)
         await details.save()
@@ -67,6 +69,9 @@ router.post('/:id', async(req, res) => {
       }
       if (req.body.status) {
         landDetails.status = req.body.status;
+      }
+      if (req.body.OwnerAdhar) {
+        landDetails.OwnerAdhar = req.body.OwnerAdhar;
       }
       if (req.body.location) {
         if (req.body.location.area) {

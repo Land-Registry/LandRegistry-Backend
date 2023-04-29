@@ -33,6 +33,10 @@ const landDetailsSchema = new mongoose.Schema({
     status:{
         type: Boolean,
         default: false,
+    },
+    OwnerAdhar:{
+        type: Number,
+        default: 123456789012,
     }
 })
 

@@ -8,6 +8,7 @@ const SellingLandSchema = new mongoose.Schema({
   },
   request: {
     type: Boolean,
+    default: false,
   },
   propertyID: {
     type: Number,
@@ -73,6 +74,14 @@ const SellingLandSchema = new mongoose.Schema({
     type: String,
     default: "http://localhost:3000/Document.pdf",
   },
+  PaymentStatus:{
+    type: Boolean,
+    default: false,
+  },
+  TransactionHash:{
+    type: String,
+    default: "",
+  }
 });
 
 module.exports = mongoose.model("SellingLand", SellingLandSchema);

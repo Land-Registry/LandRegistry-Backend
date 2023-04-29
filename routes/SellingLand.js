@@ -50,6 +50,8 @@ router.post("/", async (req, res) => {
       Price: req.body.Price,
       ImageURL: req.body.ImageURL,
       DocumentURL: req.body.DocumentURL,
+      PaymentStatus: req.body.PaymentStatus,
+      TransactionHash: req.body.TransactionHash,
     };
     const details = new SellingLand(land_details);
     await details.save();
@@ -135,6 +137,13 @@ router.post("/:id", async (req, res) => {
     if (req.body.DocumentURL) {
       sellingLand.DocumentURL = req.body.DocumentURL;
     }
+    if (req.body.PaymentStatus) {
+      sellingLand.PaymentStatus = req.body.PaymentStatus;
+    }
+    if (req.body.TransactionHash) {
+      sellingLand.TransactionHash = req.body.TransactionHash;
+    }
+
 
     await sellingLand.save();
     res.status(200).send({ message: "Land details updated successfully" });
