@@ -27,7 +27,8 @@ router.post('/', async(req, res) => {
             propertyID: req.body.propertyID,
             physicalSurveyNo: req.body.physicalSurveyNo,
             status: req.body.status,
-            OwnerAdhar: req.body.OwnerAdhar
+            OwnerAdhar: req.body.OwnerAdhar,
+            TokenID: req.body.TokenID,
         }
         if(req.body.location != null){
             land_details.location = {}
@@ -72,6 +73,9 @@ router.post('/:id', async(req, res) => {
       }
       if (req.body.OwnerAdhar) {
         landDetails.OwnerAdhar = req.body.OwnerAdhar;
+      }
+      if (req.body.TokenID) {
+        landDetails.TokenID = req.body.TokenID;
       }
       if (req.body.location) {
         if (req.body.location.area) {

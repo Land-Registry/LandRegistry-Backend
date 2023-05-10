@@ -37,6 +37,9 @@ const landDetailsSchema = new mongoose.Schema({
     OwnerAdhar:{
         type: Number,
         default: 123456789012,
+    },
+    TokenID:{
+        type: Number
     }
 })
 

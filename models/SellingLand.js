@@ -4,7 +4,6 @@ const SellingLandSchema = new mongoose.Schema({
   owner: {
     type: String,
     required: true,
-    default: "Owner",
   },
   request: {
     type: Boolean,
@@ -32,7 +31,7 @@ const SellingLandSchema = new mongoose.Schema({
   },
   Buyer_name: {
     type: String,
-    default: "Buyer",
+    default: "0",
   },
   InspectorName: {
     type: String,
@@ -46,7 +45,7 @@ const SellingLandSchema = new mongoose.Schema({
   },
   ProcessStatus: {
     type: Number,
-    default: 2,
+    default: 1,
   },
   // tokensend:{
   //     default: "wait",
