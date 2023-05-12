@@ -27,6 +27,7 @@ router.post("/", async (req, res) => {
     res.status(400).send({
       message: "Please enter the required fields",
     });
+    return;
   }
   try {
     var land_details = {

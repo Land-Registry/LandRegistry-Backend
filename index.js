@@ -16,6 +16,12 @@ app.use('/landDetails', landDetailsRouter)
 const SellingLandRouter = require('./routes/SellingLand')
 app.use('/SellingLand', SellingLandRouter)
 
+const userDetailsRouter = require('./routes/userDetails')
+app.use('/userDetails', userDetailsRouter)
+
+const verifyOtpRouter = require('./routes/verifyOtp')
+app.use('/otp', verifyOtpRouter)
+
 // PORT
 const port = process.env.PORT || 8000;
 
