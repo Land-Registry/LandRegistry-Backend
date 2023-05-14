@@ -12,7 +12,6 @@ router.post("/sendOtp", async (req, res) => {
     }
     try{
         const aadharNo = req.body.aadharNo;
-    
         var user_details = await UserDetails.findOne({aadharNo: aadharNo})
 
         if(!user_details){

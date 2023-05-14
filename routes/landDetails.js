@@ -30,6 +30,7 @@ router.post('/', async(req, res) => {
             status: req.body.status,
             OwnerAdhar: req.body.OwnerAdhar,
             TokenID: req.body.TokenID,
+            OwnerContact: req.body.OwnerContact,
         }
         if(req.body.location != null){
             land_details.location = {}
@@ -74,6 +75,9 @@ router.post('/:id', async(req, res) => {
       }
       if (req.body.OwnerAdhar) {
         landDetails.OwnerAdhar = req.body.OwnerAdhar;
+      }
+      if (req.body.OwnerContact) {
+        landDetails.OwnerContact = req.body.OwnerContact;
       }
       if (req.body.TokenID) {
         landDetails.TokenID = req.body.TokenID;

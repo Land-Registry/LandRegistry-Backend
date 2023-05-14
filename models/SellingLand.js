@@ -80,7 +80,26 @@ const SellingLandSchema = new mongoose.Schema({
   TransactionHash:{
     type: String,
     default: "",
-  }
+  },
+  BuyerTokenstatus:{
+    type: Boolean,
+    default: false,
+  },
+  StampDutyTokenStatus:{
+    type: Boolean,
+    default: false,
+  },
+  OwnerAdhar:{
+    type: Number,
+    default: 123456789012,
+},
+OwnerContact:{
+    type: Number,
+    default: 1234567890,
+},
+PaymentDuration:{
+  type: String,
+}
 });
 
 module.exports = mongoose.model("SellingLand", SellingLandSchema);

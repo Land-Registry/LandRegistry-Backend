@@ -53,6 +53,11 @@ router.post("/", async (req, res) => {
       DocumentURL: req.body.DocumentURL,
       PaymentStatus: req.body.PaymentStatus,
       TransactionHash: req.body.TransactionHash,
+      OwnerAdhar: req.body.OwnerAdhar,
+      OwnerContact: req.body.OwnerContact,
+      BuyerTokenstatus: req.body.BuyerTokenstatus,
+      StampDutyTokenStatus: req.body.StampDutyTokenStatus,
+      PaymentDuration: req.body.PaymentDuration,
     };
     const details = new SellingLand(land_details);
     await details.save();
@@ -144,6 +149,21 @@ router.post("/:id", async (req, res) => {
     if (req.body.TransactionHash) {
       sellingLand.TransactionHash = req.body.TransactionHash;
     }
+    if (req.body.OwnerAdhar) {
+        sellingLand.OwnerAdhar = req.body.OwnerAdhar;
+      }
+      if (req.body.OwnerContact) {
+        sellingLand.OwnerContact = req.body.OwnerContact;
+      }
+      if (req.body.BuyerTokenstatus) {
+        sellingLand.BuyerTokenstatus = req.body.BuyerTokenstatus;
+      }
+      if (req.body.StampDutyTokenStatus) {
+        sellingLand.StampDutyTokenStatus = req.body.StampDutyTokenStatus;
+      }
+      if (req.body.PaymentDuration) {
+        sellingLand.PaymentDuration = req.body.PaymentDuration;
+      }
 
 
     await sellingLand.save();

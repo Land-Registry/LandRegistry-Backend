@@ -38,6 +38,10 @@ const landDetailsSchema = new mongoose.Schema({
         type: Number,
         default: 123456789012,
     },
+    OwnerContact:{
+        type: Number,
+        default: 1234567890,
+    },
     TokenID:{
         type: Number
     }
