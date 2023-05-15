@@ -45,7 +45,7 @@ const SellingLandSchema = new mongoose.Schema({
   },
   ProcessStatus: {
     type: Number,
-    default: 1,
+    default: 2,
   },
   // tokensend:{
   //     default: "wait",
