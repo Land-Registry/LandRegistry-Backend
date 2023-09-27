@@ -22,6 +22,12 @@ app.use('/userDetails', userDetailsRouter)
 const verifyOtpRouter = require('./routes/verifyOtp')
 app.use('/otp', verifyOtpRouter)
 
+const purchaseRequestRouter = require('./routes/purchaseRequest')
+app.use('/purchaseRequest', purchaseRequestRouter)
+
+const auctionRouter = require('./routes/auction')
+app.use('/auction', auctionRouter)
+
 // PORT
 const port = process.env.PORT || 8000;
 

@@ -5,9 +5,9 @@ const LandDetails = require('../models/landDetails')
 router.get('/', async(req, res) => {
     try {
         const details = await LandDetails.find()
-        res.status(200).json(details)
+        return res.status(200).json(details)
     } catch (error) {
-        res.status(400).send({
+        return res.status(400).send({
             "message": "Error "+ error.message
         })
     }
@@ -15,10 +15,9 @@ router.get('/', async(req, res) => {
 
 router.post('/', async(req, res) => {
     if(!req.body.owner || !req.body.propertyID){
-        res.status(400).send({
+        return res.status(400).send({
             "message": "Please enter the required fields"
         })
-        return;
     }
     try {
         var land_details = {
@@ -41,11 +40,11 @@ router.post('/', async(req, res) => {
         }
         const details = new LandDetails(land_details)
         await details.save()
-        res.status(200).send({
+        return res.status(200).send({
             "message": "Land Details saved successfully"
         })
     } catch (error) {
-        res.status(400).send({
+        return res.status(400).send({
             "message": "Error "+ error.message
         })
     }
@@ -94,9 +93,9 @@ router.post('/:id', async(req, res) => {
         }
       }
       await landDetails.save();
-      res.status(200).send({ message: 'Land details updated successfully' });
+      return res.status(200).send({ message: 'Land details updated successfully' });
     } catch (error) {
-      res.status(400).send({ message: 'Error ' + error.message });
+      return res.status(400).send({ message: 'Error ' + error.message });
     }
   });
   

@@ -4,22 +4,26 @@ const purchaseRequestSchema = new mongoose.Schema({
     buyerID: {
         type: mongoose.Schema.Types.ObjectId,
         required: true,
-        unique: true,
+        ref: 'User',
     },
     sellerID: {
         type: mongoose.Schema.Types.ObjectId,
         required: true,
-        unique: true,
+        ref: 'User',
     },
     propertyID: {
-        type: mongoose.Schema.Types.ObjectId,
+        type: Number,
         required: true,
-        unique: true,
+        ref: 'SellingLand',
     },
     timeofRequest: {
         type: Date,
         default: Date.now()
+    },
+    status: {
+        type: String, // "pending", "accepted", "rejected"
+        default: "pending"
     }
 })
 
-module.exports = mongoose.model("PurchaseLand",purchaseRequestSchema)
+module.exports = mongoose.model("PurchaseRequest",purchaseRequestSchema)

@@ -1,13 +1,9 @@
 const mongoose = require('mongoose')
 
 const userSchema = new mongoose.Schema({
-    userID: {
-        type: mongoose.Schema.Types.ObjectId,
-        required: true,
-        unique: true,
-    },
     userName: {
         type: String,
+        required: true,
     },
     aadharNo: {
         type: Number,
@@ -16,6 +12,7 @@ const userSchema = new mongoose.Schema({
     },
     phoneNo: {
         type: Number,
+        required: true
     },
     metamaskAddress: {
         type: String,
