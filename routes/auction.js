@@ -5,7 +5,7 @@ const PurchaseRequest = require("../models/purchaseRequest");
 
 //	Schedule an auction
 router.post("/", async (req, res) => {
-    if (!req.body.propertyID || !req.body.sellerID) {
+    if (!req.body.propertyID || !req.body.sellerID || !req.body.date) {
         return res.status(400).send({
             message: "Please enter the required fields",
         });
@@ -31,6 +31,7 @@ router.post("/", async (req, res) => {
         var auction = {
             propertyID: req.body.propertyID,
             sellerID: req.body.sellerID,
+            date: req.body.date,
             numberOfBuyers: purchaseRequests.length,
             status: "scheduled",
             buyerIDs: buyerIDs,
