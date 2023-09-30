@@ -34,7 +34,7 @@ const landDetailsSchema = new mongoose.Schema({
         type: Boolean,
         default: false,
     },
-    OwnerAdhar:{
+    aadhar:{
         type: Number,
         default: 123456789012,
     },
@@ -44,7 +44,11 @@ const landDetailsSchema = new mongoose.Schema({
     },
     TokenID:{
         type: Number
-    }
+    },
+    CurrentPrice:{
+        type: Number
+    },
+
 })
 
 module.exports = mongoose.model('LandDetails', landDetailsSchema);

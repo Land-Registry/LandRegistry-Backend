@@ -27,6 +27,9 @@ const auctionSchema = new mongoose.Schema({
     status: {
         type: String, // "scheduled", "completed"
         default: "scheduled"
+    },
+    aadhar:{
+        type :Number ,
     }
 })
 
