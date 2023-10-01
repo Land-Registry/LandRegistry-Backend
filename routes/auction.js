@@ -17,11 +17,11 @@ router.post("/", async (req, res) => {
             status: "pending",
         });
 
-        if (purchaseRequests.length < 2) {
-            return res.status(400).send({
-                message: "Not enough purchase requests",
-            });
-        }
+        // if (purchaseRequests.length < 2) {
+        //     return res.status(400).send({
+        //         message: "Not enough purchase requests",
+        //     });
+        // }
 
         var buyerIDs = [];
         for (var i = 0; i < purchaseRequests.length; i++) {

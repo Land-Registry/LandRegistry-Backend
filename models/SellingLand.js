@@ -89,7 +89,7 @@ const SellingLandSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
-  OwnerAdhar:{
+  aadhar:{
     type: Number,
     default: 123456789012,
 },
