@@ -1,14 +1,27 @@
 const mongoose = require('mongoose')
 
 const auctionSchema = new mongoose.Schema({
+    roomID:{
+        type: String,
+    },
+    roomCreated:{
+        type:Boolean,
+        default:false,
+    },
+    owner:{
+        type :String ,
+    },
+    StartPrice:{
+        type:Number
+    },
     propertyID: {
         type: Number,
         required: true,
-        ref: 'SellingLand',
+        ref: 'SellingLand', 
     },
     sellerID: {
         type: mongoose.Schema.Types.ObjectId,
-        required: true,
+        // required: true,
         ref: 'User',
     },
     numberOfBuyers: {
@@ -22,7 +35,6 @@ const auctionSchema = new mongoose.Schema({
     ],
     date: {
         type: Date,
-        default: Date.now()
     },
     status: {
         type: String, // "scheduled", "completed"

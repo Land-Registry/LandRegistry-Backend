@@ -2,6 +2,30 @@ const express = require("express");
 const router = express.Router();
 const SellingLand = require("../models/SellingLand");
 
+router.post("/add-by-aadhar/:aadhar", async (req, res) => {
+  try {
+    const aadhar = req.params.aadhar;
+    const sellingLandData = req.body;
+
+    // Check if a record with the provided aadhar exists
+    const existingRecord = await SellingLand.findOne({ aadhar });
+
+    if (existingRecord) {
+      return res.status(400).send({ message: "Record with the same aadhar already exists" });
+    }
+
+    // Create a new SellingLand document with the provided data
+    const newSellingLand = new SellingLand({ ...sellingLandData, aadhar });
+
+    await newSellingLand.save();
+    
+    return res.status(200).send({ message: "Land details added successfully" });
+  } catch (error) {
+    return res.status(400).send({ message: "Error " + error.message });
+  }
+});
+
+
 router.get("/", async (req, res) => {
   res.set({
     "Access-Control-Allow-Headers": "*",
@@ -9,6 +33,7 @@ router.get("/", async (req, res) => {
   });
   try {
     const details = await SellingLand.find();
+    // console.log(details)
     return res.status(200).json(details);
   } catch (error) {
     return res.status(400).send({
@@ -23,42 +48,8 @@ router.post("/", async (req, res) => {
     "Access-Control-Allow-Methods": "POST,GET,DELETE,PUT,OPTIONS",
   });
 
-  if (!req.body.owner || !req.body.propertyID) {
-    return res.status(400).send({
-      message: "Please enter the required fields",
-    });
-  }
   try {
-    var land_details = {
-      owner: req.body.owner,
-      request: req.body.request,
-      propertyID: req.body.propertyID,
-      physicalSurveyNo: req.body.physicalSurveyNo,
-      tokenID: req.body.tokenID,
-      Area: req.body.Area,
-      City: req.body.City,
-      ownerAddress: req.body.ownerAddress,
-      Buyer_name: req.body.Buyer_name,
-      InspectorName: req.body.InspectorName,
-      Buyer_address: req.body.Buyer_address,
-      Document_Access: req.body.Document_Access,
-    //   tokensend: req.body.tokensend,
-      ProcessStatus: req.body.ProcessStatus,
-    //   Document_Verify: req.body.Document_Verify,
-    //   Transaction: req.body.Transaction,
-    //   Ownership_Transfer: req.body.Ownership_Transfer,
-      Price: req.body.Price,
-      ImageURL: req.body.ImageURL,
-      DocumentURL: req.body.DocumentURL,
-      PaymentStatus: req.body.PaymentStatus,
-      TransactionHash: req.body.TransactionHash,
-      OwnerAdhar: req.body.OwnerAdhar,
-      OwnerContact: req.body.OwnerContact,
-      BuyerTokenstatus: req.body.BuyerTokenstatus,
-      StampDutyTokenStatus: req.body.StampDutyTokenStatus,
-      PaymentDuration: req.body.PaymentDuration,
-    };
-    const details = new SellingLand(land_details);
+    const details = new SellingLand(req.body);
     await details.save();
     return res.status(200).send({
       message: "Land Details saved successfully",

@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const SellingLandSchema = new mongoose.Schema({
-  owner: {
+  ownerName: {
     type: String,
     required: true,
   },
@@ -73,33 +73,37 @@ const SellingLandSchema = new mongoose.Schema({
     type: String,
     default: "http://localhost:3000/Document.pdf",
   },
-  PaymentStatus:{
+  PaymentStatus: {
     type: Boolean,
     default: false,
   },
-  TransactionHash:{
+  TransactionHash: {
     type: String,
     default: "",
   },
-  BuyerTokenstatus:{
+  BuyerTokenstatus: {
     type: Boolean,
     default: false,
   },
-  StampDutyTokenStatus:{
+  StampDutyTokenStatus: {
     type: Boolean,
     default: false,
   },
-  aadhar:{
+  aadhar: {
     type: Number,
     default: 123456789012,
-},
-OwnerContact:{
+  },
+  OwnerContact: {
     type: Number,
     default: 1234567890,
-},
-PaymentDuration:{
-  type: String,
-}
+  },  
+  PaymentDuration: {
+    type: String,
+  },
+  auctioncreated:{
+    type:Boolean
+  },
+
 });
 
 module.exports = mongoose.model("SellingLand", SellingLandSchema);

@@ -20,7 +20,7 @@ router.get('/get-data-by-aadhar/:aadhar', async (req, res) => {
         if (!userData) {
             return res.status(404).json({ message: 'User not found' });
         }
-        console.log(userData._id.toString())
+        // console.log(userData._id.toString())
 
         // Fetch related data using references
         const auctionData = await Auction.find({ sellerID: userData._id }).exec();
