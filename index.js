@@ -31,6 +31,9 @@ app.use('/auction', auctionRouter)
 const getall = require('./routes/getall')
 app.use('/getall', getall)
 
+const chatDetails = require('./routes/chatDetails')
+app.use('/chats', chatDetails)
+
 // PORT
 const port = process.env.PORT || 8000;
 
