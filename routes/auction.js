@@ -158,5 +158,82 @@ router.get("/past", async (req, res) => {
         });
     }
 });
+router.post("/add-buyer/:propertyId/:buyerId", async (req, res) => {
+    try {
+      const propertyId = req.params.propertyId;
+      const buyerId = req.params.buyerId;
+  
+      // Find the auction by propertyID
+      const auction = await Auction.findOne({ propertyID: propertyId });
+  
+      if (!auction) {
+        return res.status(404).send({
+          message: "Auction not found for the given propertyID",
+        });
+      }
+  
+      // Check if the buyerId already exists in the buyerIDs array
+      if (auction.buyerIDs.includes(buyerId)) {
+        return res.status(400).send({
+          message: "BuyerID already exists in the auction",
+        });
+      }
+  
+      // Add the buyerID to the buyerIDs array
+      auction.buyerIDs.push(buyerId);
+  
+      // Save the updated auction
+      await auction.save();
+  
+      return res.status(200).send({
+        message: "BuyerID added to the auction successfully",
+      });
+    } catch (error) {
+      return res.status(400).send({
+        message: "Error " + error.message,
+      });
+    }
+  });
+  
+  router.delete("/remove-buyer/:auctionId/:buyerId", async (req, res) => {
+    try {
+      const auctionId = req.params.auctionId;
+      const buyerId = req.params.buyerId;
+  
+      // Find the auction by its ID
+      const auction = await Auction.findById(auctionId);
+  
+      if (!auction) {
+        return res.status(404).send({
+          message: "Auction not found",
+        });
+      }
+  
+      // Check if the buyerID exists in the buyerIDs array
+      const indexOfBuyer = auction.buyerIDs.indexOf(buyerId);
+      if (indexOfBuyer === -1) {
+        return res.status(404).send({
+          message: "Buyer ID not found in the auction",
+        });
+      }
+  
+      // Remove the buyerID from the buyerIDs array
+      auction.buyerIDs.splice(indexOfBuyer, 1);
+  
+      // Update the numberOfBuyers field
+      auction.numberOfBuyers = auction.buyerIDs.length;
+  
+      // Save the updated auction
+      await auction.save();
+  
+      return res.status(200).send({
+        message: "Buyer ID removed from the auction successfully",
+      });
+    } catch (error) {
+      return res.status(400).send({
+        message: "Error " + error.message,
+      });
+    }
+  });
 
 module.exports = router

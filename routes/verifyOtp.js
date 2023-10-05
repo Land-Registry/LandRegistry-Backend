@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const UserDetails = require("../models/userDetails");
+const UserDetails = require("../models/user");
 const sendMessage = require("../utils/sendMessage");
 
 router.post("/sendOtp", async (req, res) => {
@@ -11,7 +11,7 @@ router.post("/sendOtp", async (req, res) => {
     }
     try{
         const aadharNo = req.body.aadharNo;
-        var user_details = await UserDetails.findOne({aadharNo: aadharNo})
+        var user_details = await UserDetails.findOne({aadhaar_number: aadharNo})
 
         if(!user_details){
             return res.status(400).send({
@@ -46,7 +46,7 @@ router.post("/verifyOtp", async (req, res) => {
         const aadharNo = req.body.aadharNo;
         const otp = req.body.otp;
 
-        var user_details = await UserDetails.findOne({aadharNo: aadharNo})
+        var user_details = await UserDetails.findOne({aadhaadhaar_numberarNo: aadharNo})
 
         if(!user_details){
             return res.status(400).send({

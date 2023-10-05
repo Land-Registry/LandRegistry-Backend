@@ -8,14 +8,13 @@ const LandDetails = require('../models/landDetails');
 const PurchaseRequest = require('../models/purchaseRequest');
 const SellingLand = require('../models/SellingLand');
 const User = require('../models/user');
-const UserDetails = require('../models/userDetails');
 
 router.get('/get-data-by-aadhar/:aadhar', async (req, res) => {
     try {
-        const aadhar = req.params.aadhar;
+        const aadhaar_number = req.params.aadhar;
 
         // Use Mongoose's populate() method to fetch data with references
-        const userData = await User.findOne({ aadhar }).exec();
+        const userData = await User.findOne({ aadhaar_number }).exec();
 
         if (!userData) {
             return res.status(404).json({ message: 'User not found' });
@@ -25,10 +24,10 @@ router.get('/get-data-by-aadhar/:aadhar', async (req, res) => {
         // Fetch related data using references
         const auctionData = await Auction.find({ sellerID: userData._id }).exec();
         const purchaseRequestData = await PurchaseRequest.find({ buyerID: userData._id }).exec();
-        const sellingLandData = await SellingLand.find({ aadhar }).exec();
+        const sellingLandData = await SellingLand.find({ aadhaar_number }).exec();
 
         // Fetch LandDetails data by aadhar
-        const landDetailsData = await LandDetails.find({ aadhar }).exec();
+        const landDetailsData = await LandDetails.find({ aadhaar_number }).exec();
 
         res.status(200).json({
             user: userData,

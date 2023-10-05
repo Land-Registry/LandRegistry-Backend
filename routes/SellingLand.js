@@ -7,23 +7,19 @@ router.post("/add-by-aadhar/:aadhar", async (req, res) => {
     const aadhar = req.params.aadhar;
     const sellingLandData = req.body;
 
-    // Check if a record with the provided aadhar exists
-    const existingRecord = await SellingLand.findOne({ aadhar });
-
-    if (existingRecord) {
-      return res.status(400).send({ message: "Record with the same aadhar already exists" });
-    }
+    console.log(sellingLandData)
 
     // Create a new SellingLand document with the provided data
-    const newSellingLand = new SellingLand({ ...sellingLandData, aadhar });
+    const newSellingLand = new SellingLand({ ...sellingLandData});
 
     await newSellingLand.save();
-    
+
     return res.status(200).send({ message: "Land details added successfully" });
   } catch (error) {
     return res.status(400).send({ message: "Error " + error.message });
   }
 });
+
 
 
 router.get("/", async (req, res) => {

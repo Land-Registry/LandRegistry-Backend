@@ -26,7 +26,8 @@ const auctionSchema = new mongoose.Schema({
     },
     numberOfBuyers: {
         type: Number,
-    },
+        default: 0, // Initialize with 0 buyers
+      },
     buyerIDs: [
         { 
             type: mongoose.Schema.Types.ObjectId, 
@@ -40,9 +41,20 @@ const auctionSchema = new mongoose.Schema({
         type: String, // "scheduled", "completed"
         default: "scheduled"
     },
-    aadhar:{
-        type :Number ,
+    aadhaar_number:{
+        type :String ,
     }
 })
+
+// Define a pre 'save' middleware to update numberOfBuyers based on buyerIDs count
+auctionSchema.pre('save', async function (next) {
+    try {
+      // Count the number of buyers in the buyerIDs array
+      this.numberOfBuyers = this.buyerIDs.length;
+      return next();
+    } catch (error) {
+      return next(error);
+    }
+  });
 
 module.exports = mongoose.model("Auction",auctionSchema)

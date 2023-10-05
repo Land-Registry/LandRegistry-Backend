@@ -1,23 +1,17 @@
 const mongoose = require('mongoose');
 
 const userSchema = new mongoose.Schema({
-    userName: {
+    full_name: {
         type: String,
         required: true,
     },
-    aadhar: {
-        type: Number,
-        required: true,
-        unique: true,
-    },
-    phoneNo: {
-        type: Number,
-        required: true,
-    },
-    metamaskAddress: {
+    aadhaar_number: {
         type: String,
-        required: true,
     },
+    // metamaskAddress: {
+    //     type: String,
+    //     required: true,
+    // },
     dob: {
         type: String,
     },

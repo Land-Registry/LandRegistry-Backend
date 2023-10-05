@@ -34,9 +34,8 @@ const landDetailsSchema = new mongoose.Schema({
         type: Boolean,
         default: false,
     },
-    aadhar:{
-        type: Number,
-        default: 123456789012,
+    aadhaar_number:{
+        type :String ,
     },
     OwnerContact:{
         type: Number,

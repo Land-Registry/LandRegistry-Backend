@@ -6,8 +6,8 @@ const purchaseRequestSchema = new mongoose.Schema({
         required: true,
         ref: 'User',
     },
-    aadhar:{
-        type : String ,
+     aadhaar_number:{
+        type :String ,
     },
     sellerID: {
         type: mongoose.Schema.Types.ObjectId,
