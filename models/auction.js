@@ -43,6 +43,15 @@ const auctionSchema = new mongoose.Schema({
     },
     aadhaar_number:{
         type :String ,
+    },
+    finalPrice:{
+        type:Number
+    }
+    ,Buyer_adhar:{
+        type:String
+    },
+    Buyer_name:{
+        type:String
     }
 })
 

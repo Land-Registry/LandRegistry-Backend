@@ -31,7 +31,9 @@ const SellingLandSchema = new mongoose.Schema({
   },
   Buyer_name: {
     type: String,
-    default: "0",
+  },
+  Buyer_adhar:{
+    type:Number
   },
   InspectorName: {
     type: String,

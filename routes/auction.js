@@ -96,6 +96,33 @@ router.put("/:id", async (req, res) => {
     }
 });
 
+router.post("/:aadhaar_number/:propertyID", async (req, res) => {
+    const { aadhaar_number, propertyID } = req.params;
+    const updates = req.body;
+
+    try {
+        // Find the auction by aadhar and propertyID
+        const auction = await Auction.findOneAndUpdate(
+            { aadhaar_number, propertyID },
+            updates,
+            { new: true }
+        );
+
+        if (!auction) {
+            return res.status(404).send({
+                message: "Auction not found",
+            });
+        }
+
+        return res.status(200).json(auction);
+    } catch (error) {
+        return res.status(400).send({
+            message: "Error " + error.message,
+        });
+    }
+});
+
+
 
 // List all upcoming auctions for all users
 router.get("/upcoming", async (req, res) => {

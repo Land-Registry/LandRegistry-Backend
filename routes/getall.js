@@ -22,7 +22,7 @@ router.get('/get-data-by-aadhar/:aadhar', async (req, res) => {
         // console.log(userData._id.toString())
 
         // Fetch related data using references
-        const auctionData = await Auction.find({ sellerID: userData._id }).exec();
+        const auctionData = await Auction.find({ aadhaar_number }).exec();
         const purchaseRequestData = await PurchaseRequest.find({ buyerID: userData._id }).exec();
         const sellingLandData = await SellingLand.find({ aadhaar_number }).exec();
 

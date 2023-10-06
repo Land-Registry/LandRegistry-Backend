@@ -10,7 +10,7 @@ router.post("/add-by-aadhar/:aadhar", async (req, res) => {
     console.log(sellingLandData)
 
     // Create a new SellingLand document with the provided data
-    const newSellingLand = new SellingLand({ ...sellingLandData});
+    const newSellingLand = new SellingLand({ ...sellingLandData });
 
     await newSellingLand.save();
 
@@ -20,6 +20,29 @@ router.post("/add-by-aadhar/:aadhar", async (req, res) => {
   }
 });
 
+
+// Update SellingLand data using Aadhar and propertyID
+router.post("/update/:aadhaar_number/:propertyID", async (req, res) => {
+  try {
+    const aadhaar_number = req.params.aadhaar_number;
+    const propertyID = req.params.propertyID;
+    const updatedData = req.body;
+
+    if (updatedData.owner) {
+      updatedData.owner = updatedData.owner;
+    }
+    const sellingLand = await SellingLand.findOneAndUpdate({ aadhaar_number, propertyID },
+      updatedData,
+      { new: true });
+
+    return res.status(200).json(sellingLand);
+
+
+    return res.status(200).send({ message: "Land details updated successfully" });
+  } catch (error) {
+    return res.status(400).send({ message: "Error " + error.message });
+  }
+});
 
 
 router.get("/", async (req, res) => {
@@ -60,12 +83,12 @@ router.post("/", async (req, res) => {
 router.post("/:id", async (req, res) => {
   try {
     const id = req.params.id;
-    const sellingLand = await SellingLand.findOne({propertyID:id});
+    const sellingLand = await SellingLand.findOne({ propertyID: id });
     if (!sellingLand) {
       return res.status(404).send({ message: "Land details not found" });
     }
     console.log(
-        sellingLand, req.body.owner
+      sellingLand, req.body.owner
     )
 
     if (req.body.owner) {
@@ -84,8 +107,8 @@ router.post("/:id", async (req, res) => {
     if (req.body.Area) {
       sellingLand.Area = req.body.Area;
     }
-    if (req.body.propertyID){
-        sellingLand.propertyID = req.body.propertyID;
+    if (req.body.propertyID) {
+      sellingLand.propertyID = req.body.propertyID;
     }
     if (req.body.City) {
       sellingLand.City = req.body.City;
@@ -106,8 +129,8 @@ router.post("/:id", async (req, res) => {
       sellingLand.Document_Access = req.body.Document_Access;
     }
     if (req.body.ProcessStatus) {
-        sellingLand.ProcessStatus = req.body.ProcessStatus;
-        }
+      sellingLand.ProcessStatus = req.body.ProcessStatus;
+    }
     // if (req.body.tokensend) {
     //   sellingLand.tokensend = req.body.tokensend;
     // }
@@ -136,20 +159,20 @@ router.post("/:id", async (req, res) => {
       sellingLand.TransactionHash = req.body.TransactionHash;
     }
     if (req.body.OwnerAdhar) {
-        sellingLand.OwnerAdhar = req.body.OwnerAdhar;
-      }
-      if (req.body.OwnerContact) {
-        sellingLand.OwnerContact = req.body.OwnerContact;
-      }
-      if (req.body.BuyerTokenstatus) {
-        sellingLand.BuyerTokenstatus = req.body.BuyerTokenstatus;
-      }
-      if (req.body.StampDutyTokenStatus) {
-        sellingLand.StampDutyTokenStatus = req.body.StampDutyTokenStatus;
-      }
-      if (req.body.PaymentDuration) {
-        sellingLand.PaymentDuration = req.body.PaymentDuration;
-      }
+      sellingLand.OwnerAdhar = req.body.OwnerAdhar;
+    }
+    if (req.body.OwnerContact) {
+      sellingLand.OwnerContact = req.body.OwnerContact;
+    }
+    if (req.body.BuyerTokenstatus) {
+      sellingLand.BuyerTokenstatus = req.body.BuyerTokenstatus;
+    }
+    if (req.body.StampDutyTokenStatus) {
+      sellingLand.StampDutyTokenStatus = req.body.StampDutyTokenStatus;
+    }
+    if (req.body.PaymentDuration) {
+      sellingLand.PaymentDuration = req.body.PaymentDuration;
+    }
 
 
     await sellingLand.save();

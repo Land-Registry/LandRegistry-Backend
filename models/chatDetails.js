@@ -1,10 +1,11 @@
 const mongoose = require('mongoose')
 
 const chatSchema = new mongoose.Schema({
-    userID: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',
-        required: true,
+    Name: {
+        type:String,
+    },
+    aadhaar_number:{
+        type:Number,
     },
     message: {
         type: String,
@@ -14,9 +15,11 @@ const chatSchema = new mongoose.Schema({
         type: Date,
         default: Date.now()
     },
-    auctionID: {
-        type: String,
-        required: true,
+    propertyID: {
+        type: Number,
+    },
+    highestBid:{
+        type:Number
     }
 })
 
