@@ -173,7 +173,43 @@ router.post("/:id", async (req, res) => {
     if (req.body.PaymentDuration) {
       sellingLand.PaymentDuration = req.body.PaymentDuration;
     }
-
+    if (req.body.ownerAddress) {
+      sellingLand.ownerAddress = req.body.ownerAddress.toString();
+    }
+    if (req.body.ownerName) {
+      sellingLand.ownerName = req.body.ownerName.toString();
+    }
+    if (req.body.aadhaar_number) {
+      sellingLand.aadhaar_number = req.body.aadhaar_number.toString();
+    }
+    if (req.body.ProcessStatus) {
+      sellingLand.ProcessStatus = req.body.ProcessStatus;
+    }
+    if (req.body.PaymentStatus) {
+      sellingLand.PaymentStatus = req.body.PaymentStatus;
+    }
+    if (req.body.status) {
+      sellingLand.status = req.body.status;
+    }
+    if (req.body.request) {
+      sellingLand.request = req.body.request;
+    }
+    if (req.body.Buyer_address) {
+      sellingLand.Buyer_address = req.body.Buyer_address.toString();
+    }
+    if (req.body.Buyer_name) {
+      sellingLand.Buyer_name = req.body.Buyer_name.toString();
+    }
+    if (req.body.PaymentDuration) {
+      sellingLand.PaymentDuration = req.body.PaymentDuration;
+    }
+    if (req.body.StampDutyTokenStatus) {
+      sellingLand.StampDutyTokenStatus = req.body.StampDutyTokenStatus;
+    }
+    if (req.body.BuyerTokenstatus) {
+      sellingLand.BuyerTokenstatus = req.body.BuyerTokenstatus;
+    }
+    
 
     await sellingLand.save();
     return res.status(200).send({ message: "Land details updated successfully" });
